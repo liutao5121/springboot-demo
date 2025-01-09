@@ -1,0 +1,18 @@
+FROM openjdk:8
+VOLUME /tmp
+WORKDIR /home/app
+# ADD docker-1.0-SNAPSHOT.jar app.jar
+COPY ./target/docker-1.0-SNAPSHOT.jar /home/app/app.jar
+EXPOSE 8088
+ENTRYPOINT ["java","-jar","/home/app/app.jar"]
+
+
+#记录操作命令
+#生成镜像：docker build -t testapp:1.0 .
+#启动镜像：docker run -p 8080:8088 testapp:1.0
+
+#上传镜像到docker hub
+#查看本地镜像：docker images
+#上传镜像前，为本地镜像添加标签：docker tag testapp:1.0 liutao5121/testapp:1.0
+#登录镜像仓库：docker login
+#上传镜像：docker push liutao5121/workspace:testapp
